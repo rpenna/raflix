@@ -6,7 +6,7 @@ import DefaultPage from '../../../components/DefaultPage';
 const CadastroCategoria = function () {
     return (
         <DefaultPage>
-            <h1>Página de cadastro de categoria</h1>
+            <h1>Cadastro de Categoria</h1>
            
             <Link to="/">
                 Ir para a home
