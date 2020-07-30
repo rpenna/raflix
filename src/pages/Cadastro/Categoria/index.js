@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import DefaultPage from '../../../components/DefaultPage';
 import FormField from '../../../components/FormField';
+import Button from '../../../components/Button';
 
 const CadastroCategoria = function () {
     const initialValues = {
@@ -68,9 +69,9 @@ const CadastroCategoria = function () {
                     onChange={handleChange}
                 />
                   
-                <button>
+                <Button>
                     Cadastrar
-                </button>
+                </Button>
             </form>
 
             <h2>Categorias existentes</h2>
