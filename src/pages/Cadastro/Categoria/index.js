@@ -23,8 +23,8 @@ const CadastroCategoria = function () {
     };
 
     const handleChange = function(changeEvent) {
-        const { value } = changeEvent.target;
-        setValue(changeEvent.target.getAttribute('name'), value);
+        const { value, name } = changeEvent.target;
+        setValue(name, value);
     };
 
     const handleSubmit = function(submitEvent) {
