@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import DefaultPage from '../../../components/DefaultPage';
@@ -33,12 +33,25 @@ const CadastroCategoria = function () {
         setCategories(
             [
                 ...categories,
-                values.name
+                values
             ]
         );
 
         setValues(initialValues);
     };
+
+    useEffect(() => {
+        const url = 'http://localhost:8080/categorias';
+        
+        fetch(url)
+        .then(async (resposta) => {
+            const conteudo = await resposta.json();
+            setCategories([
+                ...conteudo,
+            ]);
+        });
+    },
+    []);
 
     return (
         <DefaultPage>
@@ -81,7 +94,7 @@ const CadastroCategoria = function () {
                     categories.map((category, index) => {
                         return (
                             <li key={`${category}.${index}`}>
-                                {category}
+                                {category.name}
                             </li>
                         );
                     })
