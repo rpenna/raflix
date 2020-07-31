@@ -40,10 +40,19 @@ const CadastroCategoria = function () {
         setValues(initialValues);
     };
 
+    const defineUrl = () => {
+        if (window.location.hostname.includes('localhost')) {
+            return 'http://localhost:8080/categorias';
+        } 
+        else {
+            return 'https://raflix-react.herokuapp.com/categorias';
+        }
+    };
+    
     useEffect(() => {
-        const url = 'http://localhost:8080/categorias';
+        const URL = defineUrl();
         
-        fetch(url)
+        fetch(URL)
         .then(async (resposta) => {
             const conteudo = await resposta.json();
             setCategories([
