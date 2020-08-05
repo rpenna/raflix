@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import DefaultPage from '../../../components/DefaultPage';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
+
+
 
 const CadastroCategoria = function () {
     const initialValues = {
@@ -11,22 +14,8 @@ const CadastroCategoria = function () {
         'description': '',
         'color': '#000000'
     }
-    const [ values, setValues ] = useState(initialValues)
     const [ categories, setCategories ] = useState([])
-
-    const setValue = function(key, value) {
-        setValues(
-            {
-                ...values,
-                [key]: value
-            }
-        );
-    };
-
-    const handleChange = function(changeEvent) {
-        const { value, name } = changeEvent.target;
-        setValue(name, value);
-    };
+    const { values, handleChange, clearForm } = useForm(initialValues);
 
     const handleSubmit = function(submitEvent) {
         submitEvent.preventDefault();
@@ -37,7 +26,7 @@ const CadastroCategoria = function () {
             ]
         );
 
-        setValues(initialValues);
+        clearForm(initialValues);
     };
 
     const defineUrl = () => {
@@ -48,7 +37,7 @@ const CadastroCategoria = function () {
             return 'https://raflix-react.herokuapp.com/categorias';
         }
     };
-    
+
     useEffect(() => {
         const URL = defineUrl();
         
