@@ -5,6 +5,7 @@ import DefaultPage from '../../../components/DefaultPage';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
+import categoryRepository from '../../../repositories/categorias';
 
 
 
@@ -29,23 +30,11 @@ const CadastroCategoria = function () {
         clearForm(initialValues);
     };
 
-    const defineUrl = () => {
-        if (window.location.hostname.includes('localhost')) {
-            return 'http://localhost:8080/categorias';
-        } 
-        else {
-            return 'https://raflix-react.herokuapp.com/categorias';
-        }
-    };
-
     useEffect(() => {
-        const URL = defineUrl();
-        
-        fetch(URL)
-        .then(async (resposta) => {
-            const conteudo = await resposta.json();
+        categoryRepository.getCategories()
+        .then((categories) => {
             setCategories([
-                ...conteudo,
+                ...categories,
             ]);
         });
     },
